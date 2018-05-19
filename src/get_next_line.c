@@ -6,12 +6,12 @@
 /*   By: tclavet <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/19 16:32:17 by tclavet           #+#    #+#             */
-/*   Updated: 2018/05/19 18:23:36 by tclavet          ###   ########.fr       */
+/*   Updated: 2018/05/19 18:28:23 by tclavet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../libft/includes/libft.h"
-#include "../include/gnl.h"
+#include "../include/get_next_line.h"
 
 static t_list		*get_link(t_list **file, int fd)
 {
@@ -30,17 +30,6 @@ static t_list		*get_link(t_list **file, int fd)
 	return (mover);
 }
 
-/*void				write_content_line(t_list *link, char **line, size_t size)
-{
-	size_t			i;
-
-	i = 0;
-	while (i < si)
-	{
-		
-	}
-}*/
-
 int					get_next_line(const int fd, char **line)
 {
 	char			buf[BUFF_SIZE];
@@ -51,16 +40,18 @@ int					get_next_line(const int fd, char **line)
 
 	link = get_link(&file, fd);
 	i = ft_strlen(link->content);
-	if((*line = ft_strnew(i)) == NULL)
+	if ((*line = ft_strnew(i)) == NULL)
 		return (-1);
 	while ((ret = read(fd, buf, BUFF_SIZE)))
 	{
 		buf[ret] = '\0';
-		if((link->content = ft_strjoin(link->content, buf)) == NULL)
+		if ((link->content = ft_strjoin(link->content, buf)) == NULL)
 			return (-1);
 		if (ft_strchr(buf, '\n'))
 			break ;
 	}
+	if (ft_strlen(link->content) == 0)
+		return (0);
 	//write_content_line(link, line, i);
 	*line = ft_strcpy(*line, link->content);
 	return (1);
