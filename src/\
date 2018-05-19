@@ -6,7 +6,7 @@
 /*   By: tclavet <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/19 16:32:17 by tclavet           #+#    #+#             */
-/*   Updated: 2018/05/19 18:05:58 by tclavet          ###   ########.fr       */
+/*   Updated: 2018/05/19 18:05:25 by tclavet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ int					get_next_line(const int fd, char **line)
 		if (ft_strchr(buf, '\n'))
 			break ;
 	}
-	//write_content_line(link, line, i);
-	*line = ft_strcpy(*line, link->content);
+	write_content_line(link, line, i);
+	**line = ft_strcpy(*line, link->content);
 	return (1);
 }
