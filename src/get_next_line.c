@@ -6,7 +6,7 @@
 /*   By: tclavet <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/19 16:32:17 by tclavet           #+#    #+#             */
-/*   Updated: 2018/05/19 18:05:58 by tclavet          ###   ########.fr       */
+/*   Updated: 2018/05/19 18:23:36 by tclavet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ static t_list		*get_link(t_list **file, int fd)
 
 int					get_next_line(const int fd, char **line)
 {
-	char			buf[BUF_SIZE];
+	char			buf[BUFF_SIZE];
 	int				ret;
 	static t_list	*file;
 	t_list			*link;
@@ -53,7 +53,7 @@ int					get_next_line(const int fd, char **line)
 	i = ft_strlen(link->content);
 	if((*line = ft_strnew(i)) == NULL)
 		return (-1);
-	while ((ret = read(fd, buf, BUF_SIZE)))
+	while ((ret = read(fd, buf, BUFF_SIZE)))
 	{
 		buf[ret] = '\0';
 		if((link->content = ft_strjoin(link->content, buf)) == NULL)
