@@ -12,10 +12,10 @@ int		main(int argc, char **argv)
 	get_next_line(fd, &line);
 	//ft_putstr(line);
 	//ft_putchar('\n');
-	/*while (get_next_line(fd, &line))
+	while (get_next_line(fd, &line))
 	{
-		ft_putchar('\n');
-		ft_putstr(line);
-		ft_putchar('\n');
-	}*/
+	//	ft_putchar('\n');
+	//	ft_putstr(line);
+	//	ft_putchar('\n');
+	}
 }
