@@ -12,7 +12,7 @@
 
 NAME 		= 	gnl
 
-SRC_PATH	=	src/
+SRC_PATH	=	
 
 SRC		=	main.c \
 			get_next_line.c
@@ -31,7 +31,7 @@ $(NAME) :	$(OBJS)
 	make -C libft
 	$(CC) $(CFLAGS) $(OBJS) -o $(NAME) -L libft -lft
 
-$(OBJS) :	include/gnl.h
+$(OBJS) :	get_next_line.h
 	$(CC) $(CFLAGS) -c $(SRC_POS)
 
 %.o		: %.c
