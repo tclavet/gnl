@@ -37,7 +37,7 @@ static int			copy_until_char(char **line, char *src, char c)
 
 	i = 0;
 	j = 0;
-	while (src[i] != c)
+	while (src[i] != c && src[i])
 		i++;
 	if ((*line = ft_strnew(i)) == NULL)
 		return (0);
@@ -67,6 +67,8 @@ int					get_next_line(const int fd, char **line)
 	t_list			*link;
 	int				i;
 
+	if (fd < 0 || line == NULL || read(fd, buf, 0) < 0)
+		return (-1);
 	link = get_link(&file, fd);
 	if ((*line = ft_strnew(1)) == NULL)
 		return (-1);
