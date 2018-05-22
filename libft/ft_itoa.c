@@ -50,7 +50,7 @@ char		*ft_itoa(int n)
 		tmp = -n;
 	while (i >= 0)
 	{
-		if (i == 0 & n < 0)
+		if ((i == 0) && n < 0)
 			str[i] = '-';
 		else
 		{

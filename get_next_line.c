@@ -30,7 +30,7 @@ static t_list		*get_link(t_list **file, int fd)
 	return (mover);
 }
 
-static int			copy_until_char(char *line, char *src, char c)
+static int			copy_until_char(char **line, char *src, char c)
 {
 	int				i;
 	int				j;
@@ -39,18 +39,13 @@ static int			copy_until_char(char *line, char *src, char c)
 	j = 0;
 	while (src[i] != c)
 		i++;
-	//dprintf(1, "Pos %d\n", i);
-	if ((line = ft_strnew(i)) == NULL)
+	if ((*line = ft_strnew(i)) == NULL)
 		return (0);
-	//dprintf(1, "Test copy\n");
 	while(src[j] && j < i)
 	{
-		line[j] = src[j];
+		line[0][j] = src[j];
 		j++;
 	}
-	//dprintf(1, "Test copy done \n");
-	//ft_putstr(line);
-	//ft_putchar('\n');
 	return (i);
 }
 
@@ -72,8 +67,6 @@ int					get_next_line(const int fd, char **line)
 	t_list			*link;
 	int				i;
 
-	//int	test = 0; //DELETE
-
 	link = get_link(&file, fd);
 	if ((*line = ft_strnew(1)) == NULL)
 		return (-1);
@@ -85,12 +78,9 @@ int					get_next_line(const int fd, char **line)
 		if (ft_strchr(buf, '\n'))
 			break ;
 	}
-	//ft_putstr(link->content);
 	if (ret < BUFF_SIZE && ft_strlen(link->content) == 0)
 		return (0);
-	ft_putstr(*line);
-	i = copy_until_char(*line, link->content, '\n');
-	ft_putstr(*line);
+	i = copy_until_char(line, link->content, '\n');
 	if (move_or_false(link, i) == 0)
 		ft_strclr(link->content);
 	return (1);
