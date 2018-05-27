@@ -32,7 +32,7 @@ $(NAME) :	$(OBJS)
 	$(CC) $(CFLAGS) $(OBJS) -o $(NAME) -L libft -lft
 
 $(OBJS) :	get_next_line.h
-	$(CC) $(CFLAGS) -c $(SRC_POS)
+	$(CC) $(CFLAGS) -g -c $(SRC_POS)
 
 %.o		: %.c
 	$(CC) -o $@ -c $< $(CFLAGS)

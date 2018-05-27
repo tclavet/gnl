@@ -78,7 +78,7 @@ OBJ = $(SRC:%.c=%.o)
 all: $(NAME)
 
 $(NAME):
-		gcc $(FLAG) $(OPTION) $(SRC)
+		gcc $(FLAG) $(OPTION) -g $(SRC)
 		ar rc $(NAME) $(OBJ)
 
 clean:

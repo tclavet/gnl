@@ -40,7 +40,10 @@ static int			copy_until_char(char **line, char *src, char c)
 	while (src[i] != c && src[i])
 		i++;
 	if ((*line = ft_strnew(i)) == NULL)
+	{
+		free(*line);
 		return (0);
+	}
 	while(src[j] && j < i)
 	{
 		line[0][j] = src[j];
@@ -72,6 +75,7 @@ int					get_next_line(const int fd, char **line)
 	link = get_link(&file, fd);
 	if ((*line = ft_strnew(1)) == NULL)
 		return (-1);
+	free(*line);
 	while ((ret = read(fd, buf, BUFF_SIZE)))
 	{
 		buf[ret] = '\0';
