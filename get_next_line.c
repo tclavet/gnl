@@ -50,6 +50,7 @@ static int			copy_until_char(char **line, char *src, char c)
 		line[0][j] = src[j];
 		j++;
 	}
+	line[0][j] = '\0';
 	return (i);
 }
 
