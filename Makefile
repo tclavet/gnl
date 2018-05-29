@@ -6,7 +6,7 @@
 #    By: atastet <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/04/10 10:37:46 by atastet           #+#    #+#              #
-#    Updated: 2018/05/15 18:53:40 by atastet          ###   ########.fr        #
+#    Updated: 2018/05/29 19:52:58 by tclavet          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -32,7 +32,7 @@ $(NAME) :	$(OBJS)
 	$(CC) $(CFLAGS) $(OBJS) -o $(NAME) -L libft -lft
 
 $(OBJS) :	get_next_line.h
-	$(CC) $(CFLAGS) -g -c $(SRC_POS)
+	$(CC) $(CFLAGS) -g3 -c $(SRC_POS)
 
 %.o		: %.c
 	$(CC) -o $@ -c $< $(CFLAGS)

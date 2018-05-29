@@ -6,7 +6,7 @@
 /*   By: tclavet <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/19 16:32:17 by tclavet           #+#    #+#             */
-/*   Updated: 2018/05/19 18:28:23 by tclavet          ###   ########.fr       */
+/*   Updated: 2018/05/29 20:39:42 by tclavet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ static t_list		*get_link(t_list **file, int fd)
 	mover = ft_lstnew("\0", fd);
 	ft_lstadd(file, mover);
 	mover = *file;
+	free(mover->content);
 	return (mover);
 }
 
@@ -39,7 +40,7 @@ static int			copy_until_char(char **line, char *src, char c)
 	j = 0;
 	while (src[i] != c && src[i])
 		i++;
-	if ((*line = ft_strnew(i)) == NULL)
+	if ((*line = (char *)malloc(sizeof(char) * (i + 1))) == NULL)
 	{
 		free(*line);
 		return (0);
@@ -73,9 +74,9 @@ int					get_next_line(const int fd, char **line)
 	if (fd < 0 || line == NULL || read(fd, buf, 0) < 0)
 		return (-1);
 	link = get_link(&file, fd);
-	if ((*line = ft_strnew(1)) == NULL)
-		return (-1);
-	free(*line);
+	//if ((*line = ft_strnew(1)) == NULL)
+	//	return (-1);
+	//free(*line);
 	while ((ret = read(fd, buf, BUFF_SIZE)))
 	{
 		buf[ret] = '\0';
@@ -86,7 +87,9 @@ int					get_next_line(const int fd, char **line)
 	}
 	if (ret < BUFF_SIZE && ft_strlen(link->content) == 0)
 		return (0);
+	dprintf(1, "gnl test 1 %s\n", *line);
 	i = copy_until_char(line, link->content, '\n');
+	dprintf(1, "gnl test 2 %s %d\n", *line, i);
 	if (move_or_false(link, i) == 0)
 		ft_strclr(link->content);
 	return (1);
